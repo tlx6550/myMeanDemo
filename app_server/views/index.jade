@@ -1,4 +1,12 @@
 ﻿extends layout
+mixin formatDate(dateString)
+  -var date = new Date(dateString);
+  -var d = date.getDate();
+  -var monthNames = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ];
+  -var m = monthNames[date.getMonth()];
+  -var y = date.getFullYear();
+  -var output = y + '/' + m + '/' + d;
+  =output
 
 block content 
   .row
@@ -20,9 +28,11 @@ block content
          span.label.label-info=topic.type
          a(href='/')=topic.title
 
-         span.pull-right=topic.postTime
+         //- span.pull-right=topic.postTime
+         span.pull-right
+           +formatDate(topic.createdOn)
          a.pull-right.author(href='/')=topic.author
 
    .col-md-3
      .userinfo
-       p stoneniqiu
+       p LeoLai
