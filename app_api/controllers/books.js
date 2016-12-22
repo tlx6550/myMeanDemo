@@ -1,8 +1,6 @@
-//require('../models/db.js');
 var request = require('request');
 var mongoose = require('mongoose');
  var BookModel = mongoose.model('Book');
-// var BookModel = require('../models/books');
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
     res.json(content);
@@ -18,8 +16,7 @@ module.exports.books = function (req, res) {
             sendJSONresponse(res, 400, err);
             return;
         }
-         res.render('books', { title: 'Books', books: books });
-        // sendJSONresponse(res, 200, books);
+         sendJSONresponse(res, 200, books);
     });
 }
 
@@ -51,6 +48,7 @@ module.exports.index = function (req, res) {
         json: {},
     }
     request(requestOptions, function (err, response, body) {
+        console.log('这里从topics回传过来了')
         if (response.statusCode == 200) {
             // console.log('body=='+JSON.stringify(body))
             res.render('index', { title: 'Index', topics: body });
@@ -77,8 +75,7 @@ module.exports.bookReadOne = function (req, res) {
             sendJSONresponse(res, 400, err);
             return;
         }
-         res.render('detail', { title: book.title, book: book });
-       // sendJSONresponse(res, 200, book);
+       sendJSONresponse(res, 200, book);
 
     });
 }

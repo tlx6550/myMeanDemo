@@ -1,15 +1,5 @@
 var db = require('../models/db.js');
-// var request = require('request');
-// var fs = require('fs');
-// var formidable = require('formidable');
-// //这样就进行了分离，home.js不在需要引用Mongoose部分。
-// // var mongoose = require('mongoose');
-// var apiOptions = {
-//     server : "http://localhost:3000"
-// };
 var request = require('request');
-
-
 var apiOptions = {
     server : "http://localhost:3000"
 };
@@ -49,6 +39,7 @@ module.exports.index = function (req, res) {
         json: {},
     }
     request(requestOptions, function (err, response, body) {
+        console.log('这里从topics跳转过来这index')
         if (response.statusCode == 200) {
             res.render('index', { title: 'Index', topics: body });
         } else {
@@ -95,9 +86,9 @@ module.exports.doBookCreate = function (req, res) {
         json: postdata,
     };
     request(requestOptions, function (err, response, body) {
-        console.log("body.name", body.name, response.statusCode);
+        console.log("body.title", body.name, response.statusCode);
         if (response.statusCode === 201) {
-            res.redirect("/detail/"+body._id);
+            res.redirect("/book/"+body._id);
         } 
         else if (response.statusCode == 400 && body.name && body.name == "ValidationError") {
             res.render('bookCreate', { title: '新增推荐图书', error:"val"});
@@ -110,7 +101,6 @@ module.exports.doBookCreate = function (req, res) {
 };
 
 module.exports.detail = function (req, res) {
-    console.log('detail9999')
     var requestOptions, path;
     path = "/api/book/" + req.params.id;
     requestOptions = {
@@ -118,7 +108,6 @@ module.exports.detail = function (req, res) {
         method: "GET",
         json: {},
     };
-    console.log('path=='+path);
     request(requestOptions, function (err, response, body) {
         if (response.statusCode == 200) {
             res.render('detail', { title: body.title, book: body });
@@ -128,6 +117,7 @@ module.exports.detail = function (req, res) {
         }
     });
 };
+
 module.exports.delete = function (req, res) {
     var requestOptions, path;
     path = "/api/book/" + req.params.id;

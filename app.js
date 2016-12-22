@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 console.log('app.js__dirname==='+__dirname)
-// app.use('/', routes);
+ app.use('/', routes);
  app.use('/',routesApi);
 
 // catch 404 and forward to error handler

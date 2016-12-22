@@ -7,9 +7,11 @@ var sendJSONresponse = function (res, status, content) {
 };
 
 module.exports.topics = function (req, res) {
+    console.log('这里从home的控制器index跳转过来这topics')
     TopicModel.find().exec(function (err, topic) {
         if (err) {
-            console.log(err);
+            console.log('6666');
+            console.log('err==='+err);
             sendJSONresponse(res, 400, err);
             return;
         }
