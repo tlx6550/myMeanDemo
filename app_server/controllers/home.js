@@ -31,21 +31,22 @@ function info (res, status) {
 
 
 module.exports.index = function (req, res) {
-    var requestOptions, path;
-    path = "/api/topics";
-    requestOptions = {
-        url: apiOptions.server + path,
-        method: "GET",
-        json: {},
-    }
-    request(requestOptions, function (err, response, body) {
-        console.log('这里从topics跳转过来这index')
-        if (response.statusCode == 200) {
-            res.render('index', { title: 'Index', topics: body });
-        } else {
-            res.render('error', { message: err.message, error: err });
-        }
-    });
+    // var requestOptions, path;
+    // path = "/api/topics";
+    // requestOptions = {
+    //     url: apiOptions.server + path,
+    //     method: "GET",
+    //     json: {},
+    // }
+    // request(requestOptions, function (err, response, body) {
+    //     console.log('这里从topics跳转过来这index')
+    //     if (response.statusCode == 200) {
+    //         res.render('index', { title: 'Index', topics: body });
+    //     } else {
+    //         res.render('error', { message: err.message, error: err });
+    //     }
+    // });
+     res.render('index', { title: 'Index000' });
 };
 
 module.exports.books = function (req, res) {

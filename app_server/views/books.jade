@@ -1,9 +1,4 @@
 extends layout
-mixin outputRating(rating)
-- for (var i = 1; i <= rating; i++)
-span.glyphicon.glyphicon-star
-- for (i = rating; i < 5; i++)
-span.glyphicon.glyphicon-star-empty
 
 block content 
   .row
@@ -17,12 +12,7 @@ block content
              a(href="/book/#{book._id}")=book.title
              span.close(data-id='#{book._id}') &times;
             p=book.info
-            p
-             - for (var i = 1; i <= book.rating; i++)
-                     span.glyphicon.glyphicon-star
-             - for (i = book.rating; i < 5; i++)
-                     span.glyphicon.glyphicon-star-empty
-
+            p(rating-stars, rating=book.rating)
             p.tags
              each tag in book.tags
               span=tag
