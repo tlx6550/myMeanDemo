@@ -24,6 +24,7 @@ html(ng-app='readApp')
          li
           a(href='/login') 登录
      #bodycontent.container
+      div(ng-view)
         block content
 
    footer.container
@@ -36,4 +37,7 @@ script(src='/bootstrap/js/bootstrap.min.js')
 script(src='/plupload-2.1.8/js/plupload.full.min.js')
 script(src='/javascripts/books.js')
 script(src='/angular/angular.min.js')
-script(src='/angular/readApp.js')
+script(src='/lib/angular-route.min.js')
+
+script(src='/angular/readApp.min.js')
+

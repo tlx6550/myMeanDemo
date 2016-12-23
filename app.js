@@ -2,6 +2,10 @@
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+//使用UglifyJS 去最小化JavaScript文件UglifyJS 能将Angular应用的源文件合并成一个文件然后压缩
+var uglifyJs = require("uglifyjs");
+var fs = require('fs');
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -22,9 +26,13 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 console.log('app.js__dirname==='+__dirname)
+app.use(express.static(path.join(__dirname, 'app_client')))
+//改为由angular的路由接入 替代routes
  app.use('/', routes);
  app.use('/',routesApi);
-
+// app.use(function (req, res) {
+//     res.sendfile(path.join(__dirname, 'app_client', 'index.html'));
+// });
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -32,6 +40,22 @@ app.use(function (req, res, next) {
     next(err);
 });
 
+var appClientFiles = [
+    'app_client/app.js',
+    'app_client/home/home.controller.js',
+    'app_client/common/services/ReadData.service.js',
+    'app_client/common/filters/formatDate.filter.js',
+    'app_client/common/directive/ratingStars/ratingStars.directive.js'
+];
+var uglified = uglifyJs.minify(appClientFiles, { compress : false });
+
+fs.writeFile('public/angular/readApp.min.js', uglified.code, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('脚本生产并保存成功: readApp.min.js');
+    }
+});
 // error handlers
 
 // development error handler

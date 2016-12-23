@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="readApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>ReadingClub</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header"><a href="/" class="navbar-brand">ReadingClub</a></div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/books">读物</a></li>
+                    <li><a href="/about">关于</a></li>
+                    <li><a href="/register">注册</a></li>
+                    <li><a href="/login">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="bodycontent" class="container" >
+        <div  ng-view>
+
+        </div>
+    </div>
+    <footer class="container">
+        <div class="row">
+            <div class="col-xs-12"><small>© stoneniqiu 2016</small></div>
+        </div>
+    </footer>
+    <script src="/angular/angular.min.js"></script>
+    <script src="/lib/angular-route.min.js"></script>
+    <script src="/angular/readApp.min.js"></script>
+    <!--script(src='/app.js')-->
+    <!--script(src='/home/home.controller.js')-->
+    <!--script(src='/common/services/ReadData.service.js')-->
+    <!--script(src='/common/filters/formatDate.filter.js')-->
+    <!--script(src='/common/directive/ratingStars/ratingStars.directive.js')-->
+    <script src="/javascripts/jquery-1.11.1.min.js"></script>
+    <script src="/plupload-2.1.8/js/plupload.full.min.js"> </script>
+    <script src="/javascripts/books.js"></script>
+    <script src="/angular/angular.min.js"></script>
+    <script src="/angular/readApp.js"></script>
+    <script src="/lib/angular-route.min.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
