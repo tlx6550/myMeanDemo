@@ -1,0 +1,20 @@
+<navigation></navigation>
+<div id="bodycontent" class="container">
+    <div class="row">
+        <div class="col-md-9 page">           
+            <p>欢迎来到<b>{{vm.title}}</b>，我们一起读过的书: </p>
+            <ul>
+            <li ng-repeat='book in vm.list' >
+                <span>{{book}}</span>
+            </li>
+            </ul>
+            <img src="imgs/read.jpg"/>
+        </div>
+        <div class="col-md-3">
+            <div class="userinfo">
+                <p>{{vm.user.userName}}</p>             
+            </div>
+        </div>
+    </div>
+</div>
+<footer-nav></footer-nav>
